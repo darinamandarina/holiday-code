@@ -1,0 +1,32 @@
+<html>
+<head>
+    <script>
+
+        function changeFunc() {
+
+            var select_tag = document.getElementById("select_tag");
+            var selected = select_tag.options[select_tag.selectedIndex].value;
+            console.log(selected);
+            var p = document.createElement('p');
+            var time=new Date();
+            var i=0;
+            if (selected == 1) {
+                p.innerHTML = "Current time: " + time.toLocaleTimeString();
+                document.body.appendChild(p);
+            }
+            else if (selected == 2) {
+                p.innerHTML = "Current date: " + time.toLocaleDateString();
+                document.body.appendChild(p);
+            }
+            setTimeout(function(){p.parentNode.removeChild(p);},1000);
+        }
+    </script>
+</head>
+<body>
+<p>Select what to show:</p>
+<select id="select_tag" onchange="changeFunc();">
+    <option value="1">Time</option>
+    <option value="2">Date</option>
+</select>
+</body>
+</html>
