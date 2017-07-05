@@ -1,0 +1,21 @@
+{
+  "name": "console-app-2-orel-reshka",
+  "version": "1.0.0",
+  "description": "console game \"heads or tails\"",
+  "main": "console-game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies":{
+    "prompt": "*"
+},
+  "keywords": [
+    "console",
+    "game",
+    "heads",
+    "or",
+    "tails"
+  ],
+  "author": "DarPa",
+  "license": "MIT"
+}
