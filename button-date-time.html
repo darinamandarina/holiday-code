@@ -1,0 +1,54 @@
+<!--
+* Created by Darina on 13.06.2017.
+* All this folder is devoted to D.Flanagan's book 'JavaScript. Definitive guide. Sixth edition'
+* Here I'm gonna to work with chapter #3, which contain strings and regexps
+* Actually I've created select node with two options, which shows real time or date. Also I've done button making the same thing.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter 3. D.Flanagan by Darina</title>
+</head>
+<body>
+
+ <script>
+ function time_date_buttons() {
+     var but1 = document.createElement('button');
+     var but2 = document.createElement('button');
+     but1.innerHTML = 'Time';
+     but2.innerHTML = 'Date';
+     document.querySelector('body').appendChild(but1);
+     document.querySelector('body').appendChild(but2);
+     but1.addEventListener('click', function time() {
+         document.querySelector('body').removeChild(but1);
+         document.querySelector('body').removeChild(but2);
+         time_show();
+     });
+     but2.addEventListener('click', function date() {
+         document.querySelector('body').removeChild(but1);
+         document.querySelector('body').removeChild(but2);
+         date_show();
+     });
+ }
+ function time_show(){
+     var time = new Date();
+     var t = time.toLocaleTimeString();
+     var p = document.createElement('p');
+     p.innerHTML = t;
+     document.querySelector('body').appendChild(p);
+ }
+
+ function date_show(){
+     var date = new Date();
+     var d = date.toLocaleDateString();
+     var p = document.createElement('p');
+     p.innerHTML = d;
+     document.querySelector('body').appendChild(p);
+ }
+
+ time_date_buttons();
+ </script>
+</body>
+</html>
