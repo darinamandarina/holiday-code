@@ -1,2 +1,2 @@
-var server = require('./site');
+const server = require('./site');
 server.start();
