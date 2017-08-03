@@ -1,18 +1,20 @@
-<div class='main'>
+<div class='content '>
+   <h1 class="text-center">Fill the form to contact with me</h1>
     <div class="container">
+       
         <!--сделать модальным окном для того, чтоб по нажатию кнопки Contact на nav-bar'е оно появлялось -->
         <form class="form-horizontal" id="contact">
             <div class="form-group">
-                <div class="row">
                     <label for="fname" class="control-label">First name</label>
-                    <input type="text" id="fname" class="" placeholder="Enter your name">
+                    <input type="text" id="fname" class="style-animation" placeholder="Enter your name">
                     <label for="lname" class="control-label col-xs-offset-1">Last name</label>
                     <input type="text" id="lname" class="style-animation" placeholder="Enter your last name">
                     <label for="email" class="control-label col-xs-offset-1">Email</label><input type="email" id="email" class="style-animation" placeholder="Enter your email">
-                </div>
+                
             </div>
-            <div class="form-group"><label for="textarea_addition_info" class="col-xs-1">Message</label><textarea form="contact" class="col-xs-9 style-animation" onfocus="this.style.height='200px'; this.style.backgroundColor='rgba(240, 255, 240, 0.65)'" onblur="this.style.height='100%'; this.style.backgroundColor = '#fff';" id="textarea_addition_info" placeholder="Here you have to write a reason to contact with me"></textarea></div>
+            <div class="form-group"><label for="textarea_addition_info" class="col-xs-1">Message</label><textarea form="contact" class="col-xs-9 style-animation" id="textarea_addition_info" placeholder="Here you have to write a reason to contact with me"></textarea></div>
             <div class="col-xs-offset-3"><button type="submit" class="btn btn-lg"> Send me a message</button></div>
         </form>
     </div>
 </div>
+<script src="code/style_for_inputs.js"></script>

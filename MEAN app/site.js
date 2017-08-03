@@ -1,85 +1,93 @@
-const express = require('/usr/lib/node_modules/express');
+let globalPath = '/usr/lib/node_modules/';
+const express = require(globalPath + 'express');
 const app = express();
-const handlebars = require('/usr/lib/node_modules/express-handlebars').create({
+const handlebars = require(globalPath + 'express-handlebars').create({
     defaultLayout: 'main'
 });
+const bodyParser = require(globalPath + 'body-parser');
 const prediction = require('./lib/prediction.js');
 exports.start = function () {
-        //настаиваем view в MVC
-        app.engine('handlebars', handlebars.engine);
-        app.set('view engine', 'handlebars');
-    
-        //порядок важен!
-        //первым делом, задаем порт
-        app.set('port', process.env.PORT || 3000);
-        
-        //добавим промежуточное ПО (middleware)
-    
-        //промежуточное ПО static
-        app.use(express.static(__dirname + '/public'));
-        
-        //промежуточное ПО для прогонки тестов и чтения запроса в url после знака ?
-        app.use(function(req,res,next){
-            res.locals.showTests = app.get('env')!=='production' && req.query.test==='1';
-            next();
-        });
-    
-        //следом за ним идет роутинг (маршрутизация)
-        app.get('/', function (req, res) {
-            res.render('home');
-        });
-    
-        
-        app.get('/about', function (req, res) {
-            res.render('about');                
-        });
-    
-        //функция выдачи рандомного предсказания getFortune из модуля prediction.js и страничный тест.
-        app.get('/app',function(req,res){
+    //настаиваем view в MVC
+    app.engine('handlebars', handlebars.engine);
+    app.set('view engine', 'handlebars');
+
+    //порядок важен!
+    //первым делом, задаем порт
+    app.set('port', process.env.PORT || 3000);
+
+    //добавим промежуточное ПО (middleware)
+    app.use(express.static(__dirname + '/public/'));
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
+
+    //промежуточное ПО для прогонки тестов и чтения запроса в url после знака ?
+    app.use(function (req, res, next) {
+        res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
+        next();
+    });
+
+    //следом за ним идет роутинг (маршрутизация)
+    app.get('/', function (req, res) {
+        res.render('home', {
+                prediction: prediction.getFortune()});
+    });
+    //скачивание любого файла с папки проекта при адресации (нажатии на ссылку ссылвющуюся) на указанный файл <a href="/download/filename"></a>
+    app.get('/download/:file', function (req, res) {
+        let file = req.params.file;
+            console.log(file);
+        res.download('public/uploads/' + file);
+    });
+
+
+    app.get('/about', function (req, res) {
+        res.render('about');
+    });
+
+    //функция выдачи рандомного предсказания getFortune из модуля prediction.js и страничный тест.
+    /*app.get('/app', function (req, res) {
             res.render('app', {
                 prediction: prediction.getFortune(),
                 pageTestScript: '/qa/tests-about.js'
             });
-        })
-           .get('/reqres', function(req,res){
-            
+        })*/
+        app.get('/reqres', function (req, res) {
+
             let request = {
                 Request_path: req.path,
                 Request_IP: req.ip,
-                Request_HOST:req.hostname,
-                Request_protocol:req.protocol,
-                Request_acceptedLanguage:req.acceptedLanguages,
-                Request_url:req.url,
-                
+                Request_HOST: req.hostname,
+                Request_protocol: req.protocol,
+                Request_acceptedLanguage: req.acceptedLanguages,
+                Request_url: req.url,
+
             };
-                res.send('200', request);
-        });
-    
-        app.get('/contact', function(req,res){
-            res.render('contact');
-        });
-    
-        app.get('/blog', function(res,req){
-            res.render('blog');
-        });
-        //зададим страницы отображения для отображения страниц со статусом ответа, отличным от 200
-        app.use(function (req, res) {
-            res.status(404);
-            res.render('404');
+            res.send('200', request);
         });
 
-        app.use(function (err, req, res, next) {
-            console.log(err.stack);
-            res.status(500);
-            res.render('500');
-        });
-        
-        //добавим защиту, отключив заголовок Express
-        app.disable('x-powered-by');
-    
-        app.listen(app.get('port'), function () {
-            console.log('Express запущен на localhost:' + app.get('port') + '\n нажмите Ctrl+C для завершения.');
-        });
-    };
-    //page 71 - read about tests untill the end of this unit
-    //page 90 - continue
+    app.get('/contact', function (req, res) {
+        res.render('contact');
+    });
+
+    app.get('/blog', function (req, res) {
+        res.render('blog');
+    });
+    //зададим страницы отображения для отображения страниц со статусом ответа, отличным от 200
+    app.use(function (req, res) {
+        res.status(404).render('404');
+    });
+
+    app.use(function (err, req, res, next) {
+        console.log(err.stack);
+        res.status(500).render('500');
+    });
+
+    //добавим защиту, отключив заголовок Express
+    app.disable('x-powered-by');
+
+    app.listen(app.get('port'), function () {
+        console.log('Express запущен на localhost:' + app.get('port') + '\n нажмите Ctrl+C для завершения.');
+    });
+};
+//page 71 - read about tests untill the end of this unit
+//page 90 - continue
