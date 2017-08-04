@@ -89,5 +89,4 @@ exports.start = function () {
         console.log('Express запущен на localhost:' + app.get('port') + '\n нажмите Ctrl+C для завершения.');
     });
 };
-//page 71 - read about tests untill the end of this unit
-//page 90 - continue
+
