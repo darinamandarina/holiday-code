@@ -1,10 +1,10 @@
-let globalPath = '/usr/lib/node_modules/';
-const express = require(globalPath + 'express');
+//let globalPath = '/usr/lib/node_modules/';
+const express = require('express');
 const app = express();
-const handlebars = require(globalPath + 'express-handlebars').create({
+const handlebars = require('express-handlebars').create({
     defaultLayout: 'main'
 });
-const bodyParser = require(globalPath + 'body-parser');
+const bodyParser = require('body-parser');
 const prediction = require('./lib/prediction.js');
 exports.start = function () {
     //настаиваем view в MVC
