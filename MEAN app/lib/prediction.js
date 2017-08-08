@@ -5,7 +5,15 @@
 let prediction = ["Будь сильным, и терпеливым, тогда все будет хорошо", "Сохраняй спокойствие и веру в себя, и у тебя все сложится", "Не бойся неведомого, изучай его", "Победи свои страхи или они победят тебя"];
 
 
-exports.getFortune = function(){
+ var getFortune = function () {
     let index = Math.floor(Math.random() * prediction.length);
-    return prediction[index];
+    return {
+        getPrediction: prediction[index],
+        icon: {
+            class: "fa fa-magic",
+            aria_hidden: "true"
+        },
+    }
+
 };
+exports.getFortune = getFortune;
