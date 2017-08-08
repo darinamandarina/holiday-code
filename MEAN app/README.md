@@ -1,9 +1,10 @@
-#Express app
+# Express app 
+### (acctually, simple web-site)
 
-type 
+type in your terminal
 ```bash
 $npm install
 $node index.js
 ```
-in your terminal and download all the packages into node_modules
-
+it will download all the packages into node_modules
+and start app
