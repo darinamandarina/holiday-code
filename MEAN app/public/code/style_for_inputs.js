@@ -11,7 +11,6 @@ for (let i=0; i<stAnm.length; i++){
     stAnm[i].addEventListener('blur', function(){onEvnt(this, '100%', 'rgba(240, 255, 240, 0.65)')});
 
 }
-    //onEvnt('100%','rgba(240, 255, 240, 0.65)');
 
 function onEvnt(element, height, color){
     element.style.height=height;
