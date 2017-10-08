@@ -45,12 +45,12 @@ exports.start = function () {
             prediction: prediction.getFortune()
         });
     });
-    /*скачивание любого файла с папки проекта при адресации (нажатии на ссылку ссылвющуюся) на указанный файл <a href="/download/filename"></a>
+    //скачивание любого файла с папки проекта при адресации (нажатии на ссылку ссылвющуюся) на указанный файл <a href="/download/filename"></a>
     app.get('/download/:file', function (req, res) {
         var file = req.params.file;
         console.log(file);
         res.download('public/uploads/' + file);
-    }); */
+    }); 
 
 
     app.get('/about', function (req, res) {
