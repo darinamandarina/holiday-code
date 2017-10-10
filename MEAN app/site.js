@@ -20,7 +20,7 @@ exports.start = function () {
 
     //порядок важен!
     //первым делом, задаем порт
-    app.set('port', process.env.PORT || 3000);
+    app.set('port', process.env.PORT || 80);
     // активирум  кэширование представлений("вьюшек")
     app.set('view cache', true);
     //добавим промежуточное ПО (middleware)
