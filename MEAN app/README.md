@@ -1,12 +1,12 @@
 # Express app 
 ## (web portfolio app)
 
-### To clone this subdirectory, please, use subversion:
+#### To clone this subdirectory, please, use subversion:
 ```bash
 $ svn checkout  http://github.com/darinamandarina/holiday-code/trunk/MEAN%20app
 ```
 
-### To start the app type in your terminal
+#### To start the app type in your terminal
 ```bash
 $ npm install
 $ node index.js
