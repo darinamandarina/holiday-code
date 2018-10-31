@@ -1,0 +1,82 @@
+<!-- проверка правильности
+вопрос кнопчкой -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz</title>
+</head>
+<body>
+<template id='template'>
+    <style>
+        .wrapper{
+            display:flex;
+            flex-direction:column;
+        }
+    </style>
+    <div class="wrapper">
+        <h1><slot name="question"></slot></h1>
+        <slot name="id"></slot>
+        <label for="true"><input name="qst" type="radio" id="true" />Yes</label>
+        <label for="false"><input name="qst" type="radio" id="false" />No</label>
+        <div><span>You have answered: </span><span class="result"></span></div>
+    </div>
+</template>
+
+<script>
+
+    const questions = [
+        {id: 1, question: "Are you stupid?", answer: false},
+        {id: 2, question: "Is your president Vladimir Putin?", answer: true},
+        {id: 3, question: "Grass is green?", answer: true}
+    ];
+
+    class QuizForm extends HTMLElement{
+        constructor(/*id, quest, answer*/){
+            super();
+
+            //this.id = id;
+            //this.answer = answer;
+
+            const shadow = this.attachShadow({mode:'open'});
+            const content = document.importNode(document.querySelector('#template').content, true);
+            const handler = (e)=>{
+
+                let id = parseInt(this.querySelector('[slot=id]').textContent); //Берем id нажатого элемента
+                let question = questions.find(q => id === q.id ); //Ищем вопрос в массиве вопросов по id
+                let userAnswer = e.target.getAttribute('id');
+
+                userAnswer = userAnswer === 'true' ? true : false; //Приводим тип к bool
+
+                this.shadowRoot.querySelector('.result').textContent = userAnswer === question.answer ? 'right!' : 'wrong!';
+
+            };
+
+            this.question = this.querySelector('[slot=question]').textContent;
+
+            shadow.appendChild(content);
+
+            this.shadowRoot.querySelectorAll('[name=qst]').forEach((el) => { el.addEventListener('click', handler) });
+        }
+
+    }
+
+    customElements.define('x-quiz', QuizForm);
+
+    //Создаем DOM элементы из массива вопросов
+    questions.forEach((q) => {
+        let questionWrap = document.createElement('div');
+        questionWrap.innerHTML = `
+            <x-quiz>
+                <span slot="question">${q.question}</span>
+                <span hidden slot="id">${q.id}</span>
+            </x-quiz>
+        `;
+        document.body.appendChild(questionWrap);
+    });
+
+</script>
+</body>
+</html>
