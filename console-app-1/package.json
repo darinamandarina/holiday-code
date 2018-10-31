@@ -1,0 +1,26 @@
+{
+  "name": "console-app-1",
+  "version": "0.0.1",
+  "description": "A console app with ansi-color module, which changes bgcolor of written text",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  {"dependencies":{
+     "ansi-styles":"*",
+     "play-sound":"*"    
+}
+    
+    
+  },
+    
+  "keywords": [
+    "nodejs",
+    "cosoleapp"
+  ],
+  "author": "Dar Pa",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-styles": "^3.1.0"
+  }
+}

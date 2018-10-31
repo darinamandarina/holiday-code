@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{{_sections.title}}}
+    {{#if showTests}}
+    <link rel="stylesheet" href="/vendor/mocha.css"> {{/if}}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=cyrillic" rel="stylesheet">
+    <script src="https://use.fontawesome.com/d1c86e4363.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="code/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="row bckgrclr padding-50px">
+                <div class="col-xs-3">
+                    <a href="/"><img height="100" src="/img/logo.svg" alt="photo"></a>
+                </div>
+                <div class="col-xs-3"><a href="/about">About</a></div>
+                <div class="col-xs-3"><a href="/contact">Contact page</a></div>
+                <div class="col-xs-3"><a href="#" data-toggle="modal" id="btnPrediction">Get a prediction </a></div>
+                {{> app}}
+            </div>
+        </header>
+        <div class="content">
+            {{{body}}}
+        </div>
+        <div class="footer bckgrclr padding-50px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-3"><a href="https://codepen.io/LostAndForgotten/pens/public/">CodePen</a></div>
+                    <div class="col-xs-3 "><a href="https://github.com/darinamandarina/">GitHub</a></div>
+                    <div class="col-xs-3 "><a href="mailto:darinamandarina97@gmail.com">Gmail</a></div>
+                    <div class="col-xs-3 "><a href="/">Home</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--    реализация страничного тестирования-->
+    {{#if showTests}}
+    <div id="mocha"></div>
+    <script src="/vendor/mocha.js"></script>
+    <script src="/vendor/chai.js"></script>
+    <script>
+        mocha.ui('tdd');
+        let assert = chai.assert;
+
+    </script>
+    <script src="/qa/tests-global.js"></script>
+    {{#if pageTestScript}}
+    <script src="{{pageTestScript}}"></script>
+    {{/if}}
+    <script>
+        mocha.run();
+
+    </script>
+    {{/if}}
+    <script src="code/script.js"></script>
+</body>
+
+</html>

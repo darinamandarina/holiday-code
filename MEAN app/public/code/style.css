@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body{
+    /*background-color: rgba(240, 255, 240, 0.65);*/
+    height: 100%;
+	font-family: 'Open Sans', sans-serif;
+    /* background-image: url('../img/V004424-Peonies.eps');*/
+    /*url("http://allswalls.com/images/mountain-road-backgrounds-wallpaper-2.jpg") no-repeat scroll;*/
+}
+
+
+.img-self{
+    height:300px;
+    float:right
+ }
+.btn-git-color{
+    color: #F3A4A0;
+    max-font-size: 40px;
+    /*color: #009999;*/
+}
+header{
+    flex: 0 0 auto;
+}
+.wrapper{
+    font-size: 115%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.footer{
+    flex: 0 0 auto;
+    padding-bottom: 50px;
+}
+.content{
+    background-color: rgba(244, 255, 232, 0.6);
+    flex: 1 0 auto;
+}
+.bckgrclr{
+    background-color: rgba(231, 255, 255, 0.67);    
+    
+}
+.padding-50px{
+    padding-top: 50px;
+    
+}
+
+.adding-info{
+    padding: 50px;
+    font-family:fantasy
+}
+
+/*input:focus{background-color:rgba(240, 255, 240, 0.65);}*/
+
+a{color: #337ab7}
+form{
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+div.col-xs-offset-3>button {
+    background-color: rgba(231, 255, 255, 0.67);
+    border: outset aquamarine;
+    margin-top:20px;
+    margin-left: 40px;
+}

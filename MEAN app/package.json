@@ -1,0 +1,20 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "An app made with book Web Development with Node and Express, ISBN 9781491949306 © 2014 Ethan Brown",
+  "main": "site.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dar Pa",
+  "license": "MIT",
+  "dependencies": {
+    "express-handlebars": "^3.0.0",
+    "express": "*",
+    "body-parser": "*"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2"
+  }
+}
